@@ -81,3 +81,18 @@ bee generate appcode -conn="root:root@tcp(127.0.0.1:3306)/bhg_main" -level=3
 >level3=level2+router
 
 自动生成代码POST请求无法填充自增id，需要自己补充
+
+
+- swagger
+
+swagger自动生成是在GOPATH环境下运行的，用go mod创建项目，会导致
+```
+bee run -gendoc=true -downdoc-true
+```
+运行时，提示
+
+> Failed to generate the docs.
+
+需要解决可以搬到gopath下，或者参考：
+
+ref:https://www.jianshu.com/p/e91e6244ae5c
