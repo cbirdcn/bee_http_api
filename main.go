@@ -19,10 +19,13 @@ func init() {
 	// beego要求必须注册一个别名为default的数据库，并且会在项目启动时初始化default数据库连接
 	user, _ := web.AppConfig.String("mysqluser")
 	pass, _ := web.AppConfig.String("mysqlpass")
+	url, _ := web.AppConfig.String("mysqlurls")
 	db, _ := web.AppConfig.String("mysqldb")
+	port, _ := web.AppConfig.Int("mysqlport")
 	maxIdleCons, _ := web.AppConfig.Int("maxIdleCons")
 	maxOpenCons, _ := web.AppConfig.Int("maxOpenCons")
-	dsn := fmt.Sprintf("%s:%s@/%s?charset=utf8", user, pass, db)
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8", user, pass, url, port, db)
+	
 	err := orm.RegisterDataBase("default", "mysql", dsn)
 	if err != nil {
 		panic("db connection error")
