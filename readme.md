@@ -1,3 +1,5 @@
+# beego http demo
+
 - prepare：
 
 create db named bhg_main
